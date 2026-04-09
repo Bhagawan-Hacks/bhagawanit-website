@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact AkashIT for your next web or mobile app development project. Book a meeting to transform your business.">
+    <title>Contact Us | AkashIT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Akash<span>IT</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <a href="contact.html" class="btn btn-primary btn-pill mobile-cta">Book a Meeting</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container animate-on-scroll">
+                <h1>Let's Build Something <span class="text-gradient">Great Together</span></h1>
+                <p>Have an idea? Let's discuss it and turn it into reality.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section-padding pt-0">
+            <div class="container two-column" style="align-items: flex-start;">
+                
+                <!-- Left: Contact Form -->
+                <div class="card glass-effect animate-on-scroll">
+                    <h2 class="mb-3">Book Your Consultation</h2>
+                    <form action="#" method="POST" class="contact-form" id="consultation-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="john@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+977-XXXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company" class="form-control" placeholder="Acme Corp">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service" class="form-control">
+                                <option value="web">Website Development</option>
+                                <option value="app">Mobile App Development</option>
+                                <option value="uiux">UI/UX Design</option>
+                                <option value="maintenance">Maintenance & Support</option>
+                                <option value="other">Other / Not Sure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Project Budget (NPR)</label>
+                            <select id="budget" name="budget" class="form-control">
+                                <option value="under_1l">Under NPR 1L</option>
+                                <option value="1_to_5l">1L - 5L</option>
+                                <option value="5_to_10l">5L - 10L</option>
+                                <option value="over_10l">10L+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Tell us a little about what you'd like to build..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Book Your Meeting</button>
+                    </form>
+                </div>
+
+                <!-- Right: Contact Info -->
+                <div class="contact-info animate-on-scroll delay-100">
+                    <div class="card glass-effect mb-4 p-0" style="overflow: hidden;">
+                        <!-- Embed Maps Placeholder -->
+                        <div style="height: 250px; background: linear-gradient(135deg, #1D3557, #E63946); display: flex; align-items: center; justify-content: center;">
+                            <h3 style="color: white; font-weight: normal; margin: 0; display:flex; align-items:center; gap:0.5rem;"><span style="font-size:1.5rem;">📍</span> Kathmandu, Nepal</h3>
+                        </div>
+                        <div style="padding: 2rem;">
+                            <div class="mb-3">
+                                <h4 class="text-primary mb-1">Email</h4>
+                                <p style="color: var(--text-off-white); margin: 0;">info@akashit.com.np</p>
+                            </div>
+                            <div class="mb-3">
+                                <h4 class="text-primary mb-1">Phone</h4>
+                                <p style="color: var(--text-off-white); margin: 0;">+977-XXX-XXXXXXX</p>
+                            </div>
+                            <div class="mb-3">
+                                <h4 class="text-primary mb-1">Business Hours</h4>
+                                <p style="color: var(--text-off-white); margin: 0;">Sun - Fri, 10:00 AM - 6:00 PM</p>
+                            </div>
+                            <div>
+                                <h4 class="text-primary mb-1">Address</h4>
+                                <p style="color: var(--text-off-white); margin: 0;">Kathmandu, Nepal<br>Central Business District, 44600</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section-padding" style="background: rgba(17,24,39,0.5);">
+            <div class="container">
+                <div class="text-center mb-4 animate-on-scroll">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Got questions? We've got answers.</p>
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>How long does a typical project take?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>It depends entirely on the scope of the project. A standard corporate website can take 2-4 weeks, while a complex web portal or mobile app might require 3-6 months. We set clear milestones and deadlines during the planning phase and stick to them strictly.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="faq-item animate-on-scroll delay-100">
+                        <div class="faq-question">
+                            <span>What's your pricing model?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We believe in transparent pricing. Depending on your preference and project style, we offer fixed-price contracts for clearly defined projects, or a dedicated time-and-materials retainer for projects requiring ongoing evolution and agility.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="faq-item animate-on-scroll delay-200">
+                        <div class="faq-question">
+                            <span>Do you provide post-launch support?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. Launch day is just the beginning. We offer various tiered maintenance plans ensuring your platform is always updated, secure, and running at peak performance. We don't vanish once the final payment is made.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 4 -->
+                    <div class="faq-item animate-on-scroll delay-300">
+                        <div class="faq-question">
+                            <span>How do you ensure security?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Security is integrated natively from day one. We adhere to OWASP standards, utilize high-grade encryption for all data transit and storage, ensure strict IAM roles on our server environments, and conduct regular penetration testing before going live.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 5 -->
+                    <div class="faq-item animate-on-scroll delay-300">
+                        <div class="faq-question">
+                            <span>Can you work with our existing systems?</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Our team has extensive experience building custom APIs and integrations to make your new platform play perfectly with your existing CRM, ERP, or legacy databases without disrupting your daily operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="logo mb-2" style="display: block;">Akash<span>IT</span></a>
+                    <p>Nepal's premier software development agency, delivering high-end digital products at sensible prices.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Apps</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <ul>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Email: info@akashit.com.np</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Phone: +977-XXX-XXXXXXX</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Location: Kathmandu, Nepal</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AkashIT. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#">FB</a><a href="#">LI</a><a href="#">TW</a><a href="#">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Basic Form Validation UI Fixes -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('consultation-form');
+            if(form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // Alert placeholder
+                    alert('Thank you! Your meeting request has been submitted successfully.');
+                    form.reset();
+                });
+            }
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

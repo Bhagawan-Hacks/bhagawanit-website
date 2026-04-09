@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View AkashIT's portfolio of web and mobile apps built for Nepal's top businesses.">
+    <title>Our Portfolio | AkashIT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Akash<span>IT</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html" class="active">Portfolio</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="contact.html" class="btn btn-primary btn-pill mobile-cta">Book a Meeting</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container animate-on-scroll">
+                <h1>Our <span class="text-gradient">Work</span></h1>
+                <p>Projects that speak for themselves.</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <section class="section-padding pt-0">
+            <div class="container">
+                
+                <!-- Filters -->
+                <div class="portfolio-filters animate-on-scroll">
+                    <button class="btn btn-primary filter-btn btn-pill" data-filter="all">All</button>
+                    <button class="btn btn-outline filter-btn btn-pill" data-filter="web">Websites</button>
+                    <button class="btn btn-outline filter-btn btn-pill" data-filter="app">Mobile Apps</button>
+                    <button class="btn btn-outline filter-btn btn-pill" data-filter="design">UI/UX Design</button>
+                </div>
+
+                <!-- Grid -->
+                <div class="portfolio-grid">
+                    
+                    <!-- Item 1 -->
+                    <div class="card p-0 portfolio-card glass-effect animate-on-scroll" data-category="web">
+                        <div class="portfolio-img-placeholder" style="background: linear-gradient(135deg, #1D3557, #E63946);">
+                            <span class="portfolio-tag">Web Development</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <div>
+                                <h3>Peak Retail E-commerce</h3>
+                                <p>A high-volume e-commerce platform for a massive retail chain spanning across Nepal, handling 10k+ daily visitors securely.</p>
+                            </div>
+                            <button class="btn btn-outline mt-2" style="width:100%; border:1px solid rgba(255,255,255,0.2);">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="card p-0 portfolio-card glass-effect animate-on-scroll delay-100" data-category="app">
+                        <div class="portfolio-img-placeholder" style="background: linear-gradient(135deg, #457B9D, #1D3557);">
+                            <span class="portfolio-tag">Mobile App</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <div>
+                                <h3>NextGen Banking App</h3>
+                                <p>A highly secure banking application for a premier Nepali fintech firm requiring complex biometric auth flows.</p>
+                            </div>
+                            <button class="btn btn-outline mt-2" style="width:100%; border:1px solid rgba(255,255,255,0.2);">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="card p-0 portfolio-card glass-effect animate-on-scroll delay-200" data-category="web">
+                        <div class="portfolio-img-placeholder" style="background: linear-gradient(135deg, #A8DADC, #0A0E1A);">
+                            <span class="portfolio-tag">Web Development</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <div>
+                                <h3>Himalayan Hotel Portal</h3>
+                                <p>A seamless booking website serving international customers with integrated local and international payment gateways.</p>
+                            </div>
+                            <button class="btn btn-outline mt-2" style="width:100%; border:1px solid rgba(255,255,255,0.2);">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="card p-0 portfolio-card glass-effect animate-on-scroll" data-category="app">
+                        <div class="portfolio-img-placeholder" style="background: linear-gradient(135deg, #111827, #E63946);">
+                            <span class="portfolio-tag">Mobile App</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <div>
+                                <h3>Kathmandu POS Dashboard</h3>
+                                <p>A comprehensive restaurant management app and POS system streamlining operations for multiple branches.</p>
+                            </div>
+                            <button class="btn btn-outline mt-2" style="width:100%; border:1px solid rgba(255,255,255,0.2);">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="card p-0 portfolio-card glass-effect animate-on-scroll delay-100" data-category="design">
+                        <div class="portfolio-img-placeholder" style="background: linear-gradient(135deg, #E63946, #A8DADC);">
+                            <span class="portfolio-tag">UI/UX Design</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <div>
+                                <h3>Hub Logistics System</h3>
+                                <p>A complex data-heavy logistics dashboard turned into a visual masterpiece for a national delivery fleet.</p>
+                            </div>
+                            <button class="btn btn-outline mt-2" style="width:100%; border:1px solid rgba(255,255,255,0.2);">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="card p-0 portfolio-card glass-effect animate-on-scroll delay-200" data-category="web">
+                        <div class="portfolio-img-placeholder" style="background: linear-gradient(135deg, #1D3557, #111827);">
+                            <span class="portfolio-tag">Web Development</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <div>
+                                <h3>Care Patient Portal</h3>
+                                <p>A secure healthcare portal bridging patients and doctors, fully compliant with international privacy guidelines.</p>
+                            </div>
+                            <button class="btn btn-outline mt-2" style="width:100%; border:1px solid rgba(255,255,255,0.2);">View Details</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Banner -->
+        <section class="cta-section animate-on-scroll">
+            <div class="container text-center">
+                <h2>Our clients see an average <span style="font-size:3rem;display:block;margin:1rem 0;">40% increase</span> in online engagement after working with us.</h2>
+                <a href="contact.html" class="btn btn-outline btn-pill mt-4" style="border-width:2px;">Become Our Next Success Story</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="logo mb-2" style="display: block;">Akash<span>IT</span></a>
+                    <p>Nepal's premier software development agency, delivering high-end digital products at sensible prices.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Services & Contacts continue as matched previously -->
+                <div class="footer-links">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Apps</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <ul>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Email: info@akashit.com.np</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Phone: +977-XXX-XXXXXXX</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Location: Kathmandu, Nepal</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AkashIT. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#">FB</a><a href="#">LI</a><a href="#">TW</a><a href="#">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
