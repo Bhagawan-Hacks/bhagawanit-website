@@ -48,39 +48,45 @@ document.addEventListener('DOMContentLoaded', async () => {
             errorDiv.style.display = 'none';
 
             try {
-                let avatarUrl = '';
+                // 1. Sign up user FIRST so they get authenticated
+                const { data: authData, error: authError } = await supabaseClient.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            full_name: fullName,
+                            avatar_url: '' // Will update later if image provided
+                        }
+                    }
+                });
+
+                if (authError) throw authError;
                 
-                // 1. Upload Avatar if provided
+                // If email confirmations are ON, session will be null. 
+                if (!authData.session) {
+                    throw new Error('Check your email for a confirmation link! (Or disable Email Confirmations in your Supabase Auth Providers settings)');
+                }
+
+                // 2. Upload Avatar if provided (now that they are authenticated)
                 if (avatarFile) {
+                    btn.innerText = 'Uploading picture...';
                     const fileExt = avatarFile.name.split('.').pop();
-                    const fileName = `${Math.random()}.${fileExt}`;
+                    const fileName = `${authData.user.id}_${Math.random()}.${fileExt}`;
                     const filePath = `public/${fileName}`;
 
-                    // Note: ensure 'avatars' bucket is created in Supabase
                     const { error: uploadError } = await supabaseClient.storage
                         .from('avatars')
                         .upload(filePath, avatarFile);
                     
                     if (uploadError) throw uploadError;
 
-                    // Get public URL
-                    const { data } = supabaseClient.storage.from('avatars').getPublicUrl(filePath);
-                    avatarUrl = data.publicUrl;
+                    // Get public URL and update profile
+                    const { data: urlData } = supabaseClient.storage.from('avatars').getPublicUrl(filePath);
+                    
+                    await supabaseClient.from('profiles')
+                        .update({ avatar_url: urlData.publicUrl })
+                        .eq('id', authData.user.id);
                 }
-
-                // 2. Sign up user
-                const { data, error } = await supabaseClient.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        data: {
-                            full_name: fullName,
-                            avatar_url: avatarUrl
-                        }
-                    }
-                });
-
-                if (error) throw error;
 
                 // Success
                 successDiv.style.display = 'block';
