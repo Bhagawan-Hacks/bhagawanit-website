@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | AkashIT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Akash<span>IT</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="feed.html" id="nav-feed" style="display:none;">Feed</a>
+                    <a href="login.html">Log In</a>
+                    <a href="signup.html" class="active btn btn-primary btn-pill mobile-cta">Sign Up</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding-top: 80px; padding-bottom: 3rem;">
+        <div class="card glass-effect animate-on-scroll" style="width: 100%; max-width: 450px;">
+            <h2 class="text-center mb-3">Create an Account</h2>
+            <form id="signup-form" class="contact-form">
+                <div id="signup-error" style="color: var(--color-primary-red); text-align: center; font-size: 0.9rem; margin-bottom: 1rem; display: none;"></div>
+                <div id="signup-success" style="color: var(--color-light-accent); text-align: center; font-size: 0.9rem; margin-bottom: 1rem; display: none;">Account created successfully! Redirecting...</div>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" required placeholder="John Doe">
+                </div>
+                <!-- Profile Image Option -->
+                <div class="form-group">
+                    <label for="avatar">Profile Picture (Optional)</label>
+                    <input type="file" id="avatar" class="form-control" accept="image/*" style="padding: 0.5rem;">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required placeholder="Min 6 characters" minlength="6">
+                </div>
+                
+                <button type="submit" id="signup-btn" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign Up</button>
+            </form>
+            <p class="text-center mt-3" style="font-size: 0.9rem;">
+                Already have an account? <a href="login.html">Log in here</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Configure Supabase -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
