@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const logoutBtn = document.getElementById('logout-btn');
 
     // Make sure we check if user is logged in everywhere to update the navbar
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const { data: { session }, error } = await supabaseClient.auth.getSession();
     const user = session?.user;
 
     // --- Dynamic Navbar Update ---
@@ -57,19 +57,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const filePath = `public/${fileName}`;
 
                     // Note: ensure 'avatars' bucket is created in Supabase
-                    const { error: uploadError } = await supabase.storage
+                    const { error: uploadError } = await supabaseClient.storage
                         .from('avatars')
                         .upload(filePath, avatarFile);
                     
                     if (uploadError) throw uploadError;
 
                     // Get public URL
-                    const { data } = supabase.storage.from('avatars').getPublicUrl(filePath);
+                    const { data } = supabaseClient.storage.from('avatars').getPublicUrl(filePath);
                     avatarUrl = data.publicUrl;
                 }
 
                 // 2. Sign up user
-                const { data, error } = await supabase.auth.signUp({
+                const { data, error } = await supabaseClient.auth.signUp({
                     email,
                     password,
                     options: {
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             errorDiv.style.display = 'none';
 
             try {
-                const { data, error } = await supabase.auth.signInWithPassword({
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
                     email,
                     password
                 });
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', async (e) => {
             e.preventDefault();
-            await supabase.auth.signOut();
+            await supabaseClient.auth.signOut();
             window.location.href = 'index.html';
         });
     }
@@ -165,7 +165,7 @@ function updateNavigation(user) {
             logout.innerText = 'Log Out';
             logout.addEventListener('click', async (e) => {
                 e.preventDefault();
-                await supabase.auth.signOut();
+                await supabaseClient.auth.signOut();
                 window.location.href = 'index.html';
             });
             navLinksContainer.appendChild(logout);

@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!postForm || !feedList) return;
 
     // Check auth
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     const user = session?.user;
     if (!user) return; // Prevent errors if unauthenticated
 
     let currentProfile = null;
 
     // Fetch user profile info
-    const { data: profile } = await supabase
+    const { data: profile } = await supabaseClient
         .from('profiles')
         .select('*')
         .eq('id', user.id)
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadFeed() {
         try {
             // Join posts with profiles
-            const { data: posts, error } = await supabase
+            const { data: posts, error } = await supabaseClient
                 .from('posts')
                 .select(`
                     id,
@@ -100,17 +100,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             const fileName = `${user.id}_${Math.random()}.${fileExt}`;
             const filePath = `public/${fileName}`;
 
-            const { error: uploadError } = await supabase.storage
+            const { error: uploadError } = await supabaseClient.storage
                 .from('posts')
                 .upload(filePath, imageFile);
             
             if (uploadError) throw uploadError;
 
             // Get URL
-            const { data: { publicUrl } } = supabase.storage.from('posts').getPublicUrl(filePath);
+            const { data: { publicUrl } } = supabaseClient.storage.from('posts').getPublicUrl(filePath);
 
             // 2. Insert into DB
-            const { error: insertError } = await supabase
+            const { error: insertError } = await supabaseClient
                 .from('posts')
                 .insert([{
                     user_id: user.id,
