@@ -1,4 +1,6 @@
 // IMPORTANT: Create `auth.js` to handle all Supabase authentication logic
+const isAuthPage = window.location.pathname.includes('login.html') || window.location.pathname.includes('signup.html');
+
 document.addEventListener('DOMContentLoaded', async () => {
     
     // Auth elements
@@ -21,13 +23,34 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Signup Logic ---
     if (signupForm) {
+        // Image Preview logic (outside submit listener)
+        const avatarInput = document.getElementById('avatar');
+        const preview = document.getElementById('avatar-preview');
+        
+        if (avatarInput && preview) {
+            avatarInput.addEventListener('change', () => {
+                const file = avatarInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = 'none';
+                }
+            });
+        }
+
         signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const fullName = document.getElementById('fullName').value;
-            const avatarFile = document.getElementById('avatar').files[0];
+            const avatarInput = document.getElementById('avatar');
+            const avatarFile = avatarInput.files[0];
             const btn = document.getElementById('signup-btn');
             const errorDiv = document.getElementById('signup-error');
             const successDiv = document.getElementById('signup-success');
@@ -142,7 +165,7 @@ function updateNavigation(user) {
     if (!navLinksContainer) return;
 
     if (user) {
-        // Logged In: Remove Login/Signup/Contact CTA, Add Feed and Logout
+        // Logged In: Remove Login/Signup/Contact CTA, Add Logout
         const buttonsToRemove = navLinksContainer.querySelectorAll('a[href="login.html"], a[href="signup.html"], a.mobile-cta');
         buttonsToRemove.forEach(btn => btn.style.display = 'none');
         
