@@ -13,20 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- Dynamic Navbar Update ---
     updateNavigation(user);
 
-    // --- Page Protection ---
-    const path = window.location.pathname;
-    const isFeed = path.includes('feed.html');
-    const isAuthPage = path.includes('login.html') || path.includes('signup.html');
-
-    if (isFeed && !user) {
-        // Redirect to login if unauthenticated user tries to access feed
-        window.location.href = 'login.html';
-        return;
-    }
-    
     if (isAuthPage && user) {
-        // Redirect to feed if authenticated user tries to access login/signup
-        window.location.href = 'feed.html';
+        // Redirect to index if authenticated user tries to access login/signup
+        window.location.href = 'index.html';
         return;
     }
 
@@ -91,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Success
                 successDiv.style.display = 'block';
                 setTimeout(() => {
-                    window.location.href = 'feed.html';
+                    window.location.href = 'index.html';
                 }, 2000);
 
             } catch (err) {
@@ -126,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (error) throw error;
 
                 // Success
-                window.location.href = 'feed.html';
+                window.location.href = 'index.html';
 
             } catch (err) {
                 errorDiv.innerText = 'Invalid email or password.';
@@ -157,10 +146,6 @@ function updateNavigation(user) {
         const buttonsToRemove = navLinksContainer.querySelectorAll('a[href="login.html"], a[href="signup.html"], a.mobile-cta');
         buttonsToRemove.forEach(btn => btn.style.display = 'none');
         
-        // Ensure "Feed" link exists and is shown
-        let feedLink = navLinksContainer.querySelector('a[href="feed.html"]');
-        if (feedLink) feedLink.style.display = 'inline-block';
-        
         // Add a logout button if it doesn't exist functionally
         if (!document.getElementById('logout-btn')) {
             const logout = document.createElement('a');
@@ -177,10 +162,6 @@ function updateNavigation(user) {
             navLinksContainer.appendChild(logout);
         }
     } else {
-        // Logged Out: Make sure Feed/Logout are hidden, ensure Login/Signup exist
-        const feedLink = navLinksContainer.querySelector('a[href="feed.html"]');
-        if (feedLink) feedLink.style.display = 'none';
-        
         const logoutBtn = document.getElementById('logout-btn');
         if (logoutBtn) logoutBtn.style.display = 'none';
 
