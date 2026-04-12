@@ -5,16 +5,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     const meetingsList = document.getElementById('meetings-list');
     const adminLoading = document.getElementById('admin-loading');
     
-    const ADMIN_EMAIL = 'gautambhagawan55@gmail.com';
-
     // 1. Check Session & Auth Guard
-    const { data: { session }, error } = await supabaseClient.auth.getSession();
+    const { data: { session }, error: sessionErr } = await supabaseClient.auth.getSession();
     const user = session?.user;
 
-    if (!user || user.email !== ADMIN_EMAIL) {
+    if (!user) {
         adminGuard.style.display = 'block';
         return;
     }
+
+    // Fetch user profile to check role
+    const { data: profile, error: profileErr } = await supabaseClient
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single();
+
+    if (profileErr || !profile || profile.role !== 'admin') {
+        adminGuard.style.display = 'block';
+        if (profileErr) console.error('Profile Load Error:', profileErr);
+        return;
+    }
+
+    // Is Admin
+    adminGuard.style.display = 'none';
 
     // Is Admin
     adminContent.style.display = 'block';

@@ -6,6 +6,7 @@ create table if not exists public.profiles (
   id uuid references auth.users not null primary key,
   full_name text,
   avatar_url text,
+  role text default 'client' check (role in ('client', 'admin')),
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
@@ -27,8 +28,13 @@ create policy "Users can update own profile." on profiles for update using (auth
 create or replace function public.handle_new_user()
 returns trigger as $$
 begin
-  insert into public.profiles (id, full_name, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url')
+  insert into public.profiles (id, full_name, avatar_url, role)
+  values (
+    new.id, 
+    new.raw_user_meta_data->>'full_name', 
+    new.raw_user_meta_data->>'avatar_url',
+    'client'
+  )
   on conflict (id) do nothing;
   return new;
 end;
@@ -111,10 +117,24 @@ create policy "Users can view own meetings" on public.meetings
 create policy "Users can insert own meetings" on public.meetings
   for insert with check (auth.uid() = user_id);
 
--- Admin (Bhagawan) can view all meetings
-create policy "Admin can view all meetings" on public.meetings
-  for select using (auth.jwt() ->> 'email' = 'gautambhagawan55@gmail.com');
+-- Admin role check function (Optimization)
+create or replace function public.is_admin()
+returns boolean as $$
+begin
+  return exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+end;
+$$ language plpgsql security definer;
 
--- Admin (Bhagawan) can update meetings (approve/reject)
+-- Admin can view all meetings
+create policy "Admin can view all meetings" on public.meetings
+  for select using ( public.is_admin() );
+
+-- Admin can update meetings (approve/reject)
 create policy "Admin can update meetings" on public.meetings
-  for update using (auth.jwt() ->> 'email' = 'gautambhagawan55@gmail.com');
+  for update using ( public.is_admin() );
+
+-- NOTE: To make yourself admin, run this in SQL Editor:
+-- UPDATE public.profiles SET role = 'admin' WHERE id = 'YOUR_USER_ID';
