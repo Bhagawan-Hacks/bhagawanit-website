@@ -575,6 +575,14 @@ footer {
   font-family: var(--font-body);
   transition: border-color var(--transition-base);
 }
+
+/* Fix dropdown option visibility */
+select.form-control option {
+  background-color: var(--bg-card-dark);
+  color: var(--text-off-white);
+  padding: 10px;
+}
+
 .form-control:focus {
   outline: none;
   border-color: var(--color-primary-red);
