@@ -275,20 +275,6 @@
         </div>
     </footer>
 
-    <!-- Basic Form Validation UI Fixes -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('consultation-form');
-            if(form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    // Alert placeholder
-                    alert('Thank you! Your meeting request has been submitted successfully.');
-                    form.reset();
-                });
-            }
-        });
-    </script>
     <!-- Configure Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-config.js"></script>

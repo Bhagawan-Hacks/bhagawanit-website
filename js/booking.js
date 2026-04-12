@@ -102,15 +102,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const formData = {
                 user_id: user.id,
-                full_name: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
+                full_name: document.getElementById('fullName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                company: document.getElementById('company').value.trim(),
                 service: document.getElementById('service').value,
                 budget: document.getElementById('budget').value,
-                message: document.getElementById('message').value,
+                message: document.getElementById('message').value.trim(),
                 status: 'pending'
             };
+
+            // Safety validation
+            if (!formData.full_name || !formData.email) {
+                bookingError.innerText = 'Please fill in all required fields.';
+                bookingError.style.display = 'block';
+                btn.disabled = false;
+                btn.innerText = 'Submit Request';
+                return;
+            }
 
             try {
                 const { error } = await supabaseClient
