@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Intelligently fallback to production URL if opened via file:// to prevent Supabase default localhost:3000 errors
                 let redirectUrl = new URL('reset-password.html', window.location.href).href;
                 if (window.location.protocol === 'file:') {
-                    redirectUrl = 'https://bhagawanit-website.vercel.app/reset-password.html';
+                    redirectUrl = 'https://bhagawangautam.com.np/reset-password.html';
                 }
 
                 const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
