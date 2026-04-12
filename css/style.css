@@ -891,9 +891,9 @@ textarea.form-control {
     text-align: center;
   }
   .ceo-image-wrapper {
-    max-width: 300px;
+    max-width: 320px;
     margin: 0 auto;
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/4;
   }
   .ceo-stats {
     justify-content: center;
