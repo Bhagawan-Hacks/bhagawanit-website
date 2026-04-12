@@ -128,12 +128,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     <div class="admin-actions" style="display: flex; flex-direction: column; gap: 0.75rem; min-width: 180px;">
                         ${meeting.status === 'pending' ? `
+                            <div class="mb-2">
+                                <label style="font-size: 0.7rem; color: var(--text-muted-gray); display: block; margin-bottom: 0.2rem;">SCHEDULE DATE</label>
+                                <input type="date" id="date-${meeting.id}" class="form-control" style="background: rgba(0,0,0,0.2); height: 35px; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                                <label style="font-size: 0.7rem; color: var(--text-muted-gray); display: block; margin-bottom: 0.2rem;">SCHEDULE TIME</label>
+                                <input type="time" id="time-${meeting.id}" class="form-control" style="background: rgba(0,0,0,0.2); height: 35px; font-size: 0.8rem;">
+                            </div>
                             <button class="btn btn-primary approve-btn" data-id="${meeting.id}">Approve Meeting</button>
                             <button class="btn btn-outline reject-btn" data-id="${meeting.id}" style="color: var(--color-primary-red); border-color: var(--color-primary-red); width: 100%;">Decline</button>
                         ` : `
                             <div class="text-center py-2 mb-2" style="background: rgba(255,255,255,0.03); border-radius: 4px;">
                                 <small style="display: block; color: var(--text-muted-gray);">Action taken</small>
                                 <strong style="color: ${meeting.status === 'approved' ? '#52B788' : 'var(--text-muted-gray)'}; font-size: 0.8rem;">${meeting.status.toUpperCase()}</strong>
+                                ${meeting.meeting_date ? `<small style="display: block; color: var(--text-off-white); font-size: 0.7rem;">${meeting.meeting_date} @ ${meeting.meeting_time}</small>` : ''}
                             </div>
                             <button class="btn btn-outline reset-btn" data-id="${meeting.id}" style="opacity: 0.6; font-size: 0.8rem; width: 100%;">Reset to Pending</button>
                         `}
@@ -146,7 +153,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Add Listeners
         document.querySelectorAll('.approve-btn').forEach(btn => {
-            btn.addEventListener('click', () => updateStatus(btn.dataset.id, 'approved'));
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const mDate = document.getElementById(`date-${id}`).value;
+                const mTime = document.getElementById(`time-${id}`).value;
+                
+                if (!mDate) {
+                    alert('Please select a date for the meeting.');
+                    return;
+                }
+                
+                updateStatus(id, 'approved', mDate, mTime);
+            });
         });
         document.querySelectorAll('.reject-btn').forEach(btn => {
             btn.addEventListener('click', () => updateStatus(btn.dataset.id, 'rejected'));
@@ -173,11 +191,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    async function updateStatus(id, status) {
+    async function updateStatus(id, status, mDate = null, mTime = null) {
+        const updateData = { status: status };
+        if (mDate) updateData.meeting_date = mDate;
+        if (mTime) updateData.meeting_time = mTime;
+
         try {
             const { error } = await supabaseClient
                 .from('meetings')
-                .update({ status: status })
+                .update(updateData)
                 .eq('id', id);
 
             if (error) throw error;

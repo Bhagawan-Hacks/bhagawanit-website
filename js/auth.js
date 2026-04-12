@@ -169,6 +169,15 @@ function updateNavigation(user) {
         const buttonsToRemove = navLinksContainer.querySelectorAll('a[href="login.html"], a[href="signup.html"], a.mobile-cta');
         buttonsToRemove.forEach(btn => btn.style.display = 'none');
         
+        // Add Dashboard link
+        if (!document.getElementById('dashboard-nav-link')) {
+            const dashboard = document.createElement('a');
+            dashboard.href = 'dashboard.html';
+            dashboard.id = 'dashboard-nav-link';
+            dashboard.innerText = 'Dashboard';
+            navLinksContainer.insertBefore(dashboard, navLinksContainer.firstElementChild); // Add to the start or wherever appropriate
+        }
+
         // Add a logout button if it doesn't exist functionally
         if (!document.getElementById('logout-btn')) {
             const logout = document.createElement('a');

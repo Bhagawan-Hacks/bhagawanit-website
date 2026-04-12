@@ -96,6 +96,8 @@ create table if not exists public.meetings (
   budget text,
   message text,
   status text default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  meeting_date text,
+  meeting_time text,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

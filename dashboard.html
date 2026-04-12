@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Bhagawan IT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-header {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(29, 53, 87, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 80px 0 40px;
+        }
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-primary-red);
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+        }
+        .dashboard-card {
+            border-left: 4px solid var(--color-primary-red);
+        }
+        .meeting-status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .scheduled-info {
+            background: rgba(45, 106, 79, 0.1);
+            border: 1px solid rgba(45, 106, 79, 0.2);
+            color: #52B788;
+            padding: 1rem;
+            border-radius: var(--radius-btn);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body style="background: var(--bg-deep-navy);">
+
+    <!-- Navbar is handled by main.js and auth.js -->
+    <header class="scrolled">
+        <div class="container">
+            <nav id="navbar-placeholder">
+                <a href="index.html" class="logo">Bhagawan<span>IT</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content" style="padding-top: 0;">
+        <section class="dashboard-header">
+            <div class="container">
+                <div id="loading-dashboard" class="text-center py-5">
+                    <div class="spinner"></div>
+                    <p>Building your dashboard...</p>
+                </div>
+
+                <div id="dashboard-content" style="display: none;">
+                    <div class="profile-section">
+                        <img id="user-avatar" src="images/team/member1.jpg" alt="Avatar" class="profile-avatar">
+                        <div>
+                            <h1 id="user-name" class="mb-1">Loading Name...</h1>
+                            <p id="user-email" class="text-muted-gray">Loading Email...</p>
+                            <a href="#" id="edit-profile-btn" class="btn btn-outline mt-2" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Settings</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2 class="section-title mb-4" style="text-align: left;">My Consultations</h2>
+                            <div id="my-meetings-list" class="meetings-container">
+                                <!-- Meetings will be injected here -->
+                                <p class="text-muted-gray">No meetings booked yet.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h2 class="section-title mb-4" style="text-align: left;">Quick Actions</h2>
+                            <div class="card glass-effect p-3 mb-3">
+                                <h4 class="mb-2">Need Help?</h4>
+                                <p class="text-muted-gray mb-3" style="font-size: 0.9rem;">Chat with us directly on WhatsApp for faster support.</p>
+                                <a href="https://wa.me/9779765655135" class="btn btn-primary w-100" target="_blank">WhatsApp Support</a>
+                            </div>
+                            <div class="card glass-effect p-3">
+                                <h4 class="mb-2">Book New Office Visit</h4>
+                                <p class="text-muted-gray mb-3" style="font-size: 0.9rem;">Want to discuss a new venture? Book a fresh consultation.</p>
+                                <a href="contact.html" class="btn btn-outline w-100">Go to Booking</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dashboard-guest" style="display: none;" class="text-center py-5">
+                    <span style="font-size: 4rem;">🔒</span>
+                    <h2 class="mt-2">Login Required</h2>
+                    <p>Please log in to see your personalized dashboard.</p>
+                    <a href="login.html" class="btn btn-primary mt-2">Log In Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
