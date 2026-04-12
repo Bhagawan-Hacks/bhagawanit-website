@@ -159,23 +159,60 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+async function fetchUserProfile(userId) {
+    try {
+        const { data, error } = await supabaseClient
+            .from('profiles')
+            .select('*')
+            .eq('id', userId)
+            .single();
+        
+        if (error) throw error;
+        return data;
+    } catch (err) {
+        console.error('Error fetching profile:', err);
+        return null;
+    }
+}
+
 // Function to dynamically update navbar links for existing static HTML pages
 function updateNavigation(user) {
     const navLinksContainer = document.querySelector('.nav-links');
     if (!navLinksContainer) return;
 
     if (user) {
-        // Logged In: Remove Login/Signup/Contact CTA, Add Logout
-        const buttonsToRemove = navLinksContainer.querySelectorAll('a[href="login.html"], a[href="signup.html"], a.mobile-cta');
+        // Logged In: Remove Login/Signup
+        const buttonsToRemove = navLinksContainer.querySelectorAll('a[href="login.html"], a[href="signup.html"]');
         buttonsToRemove.forEach(btn => btn.style.display = 'none');
         
+        // Fetch role to show Admin Link
+        fetchUserProfile(user.id).then(profile => {
+            if (profile && profile.role === 'admin') {
+                if (!document.getElementById('admin-nav-link')) {
+                    const adminLink = document.createElement('a');
+                    adminLink.href = 'admin-portal.html';
+                    adminLink.id = 'admin-nav-link';
+                    adminLink.innerText = 'Admin Portal';
+                    adminLink.style.color = 'var(--color-primary-red)';
+                    adminLink.style.fontWeight = '700';
+                    navLinksContainer.insertBefore(adminLink, navLinksContainer.firstElementChild);
+                }
+            }
+        });
+
         // Add Dashboard link
         if (!document.getElementById('dashboard-nav-link')) {
             const dashboard = document.createElement('a');
             dashboard.href = 'dashboard.html';
             dashboard.id = 'dashboard-nav-link';
             dashboard.innerText = 'Dashboard';
-            navLinksContainer.insertBefore(dashboard, navLinksContainer.firstElementChild); // Add to the start or wherever appropriate
+            // Insert after Admin link if exists, otherwise at start
+            const adminLink = document.getElementById('admin-nav-link');
+            if (adminLink) {
+                adminLink.after(dashboard);
+            } else {
+                navLinksContainer.insertBefore(dashboard, navLinksContainer.firstElementChild);
+            }
         }
 
         // Add a logout button if it doesn't exist functionally
