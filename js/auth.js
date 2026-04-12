@@ -84,7 +84,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 // If email confirmations are ON, session will be null. 
                 if (!authData.session) {
-                    throw new Error('Check your email for a confirmation link! (Or disable Email Confirmations in your Supabase Auth Providers settings)');
+                    successDiv.innerText = 'Account created! Please check your email to confirm your account.';
+                    successDiv.style.display = 'block';
+                    signupForm.reset();
+                    if (preview) preview.style.display = 'none';
+                    btn.disabled = false;
+                    btn.innerText = 'Check your email';
+                    return; // Stop here, they are not logged in yet so they can't upload avatars
                 }
 
                 // 2. Upload Avatar if provided (now that they are authenticated)
