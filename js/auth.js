@@ -165,9 +165,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             successDiv.style.display = 'none';
 
             try {
-                // In production, redirectTo should be your live Vercel URL
+                const redirectUrl = new URL('reset-password.html', window.location.href).href;
                 const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-                    redirectTo: window.location.origin + '/reset-password.html',
+                    redirectTo: redirectUrl,
                 });
 
                 if (error) throw error;
