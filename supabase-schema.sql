@@ -82,4 +82,37 @@ drop policy if exists "Post images are publicly accessible." on storage.objects;
 drop policy if exists "Authenticated users can upload posts." on storage.objects;
 
 create policy "Post images are publicly accessible." on storage.objects for select using (bucket_id = 'posts');
-create policy "Authenticated users can upload posts." on storage.objects for insert with check (bucket_id = 'posts' and auth.role() = 'authenticated');
+-- ==========================================
+-- 5. Create Meetings Table & Policies
+-- ==========================================
+create table if not exists public.meetings (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references public.profiles(id) not null,
+  full_name text not null,
+  email text not null,
+  phone text,
+  company text,
+  service text,
+  budget text,
+  message text,
+  status text default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+alter table public.meetings enable row level security;
+
+-- Users can view their own meetings
+create policy "Users can view own meetings" on public.meetings
+  for select using (auth.uid() = user_id);
+
+-- Users can insert their own meetings
+create policy "Users can insert own meetings" on public.meetings
+  for insert with check (auth.uid() = user_id);
+
+-- Admin (Bhagawan) can view all meetings
+create policy "Admin can view all meetings" on public.meetings
+  for select using (auth.jwt() ->> 'email' = 'gautambhagawan55@gmail.com');
+
+-- Admin (Bhagawan) can update meetings (approve/reject)
+create policy "Admin can update meetings" on public.meetings
+  for update using (auth.jwt() ->> 'email' = 'gautambhagawan55@gmail.com');

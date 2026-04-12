@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Bhagawan IT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: var(--bg-deep-navy);">
+
+    <header class="scrolled">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Bhagawan<span>IT</span> Admin</a>
+                <div class="nav-links">
+                    <a href="index.html">View Site</a>
+                    <a href="#" id="logout-btn" class="btn btn-outline btn-pill" style="padding: 0.5rem 1rem;">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content" style="padding-top: 100px;">
+        <div class="container">
+            <div id="admin-auth-guard" style="display: none;" class="text-center py-5">
+                <span style="font-size: 4rem;">🚫</span>
+                <h2 class="mt-2">Access Denied</h2>
+                <p>This area is restricted to Bhagawan Gautam only.</p>
+                <a href="index.html" class="btn btn-primary mt-2">Return Home</a>
+            </div>
+
+            <div id="admin-content" style="display: none;">
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="mb-1">Meeting Requests</h1>
+                        <p>Manage and approve consultation bookings.</p>
+                    </div>
+                    <div id="stats-summary" class="glass-effect p-2" style="border-radius: var(--radius-btn); display: flex; gap: 1.5rem;">
+                        <div class="text-center"><span id="p-count" style="color:var(--color-primary-red); font-weight:700;">0</span><br><small>PENDING</small></div>
+                        <div class="text-center"><span id="a-count" style="color:#2D6A4F; font-weight:700;">0</span><br><small>APPROVED</small></div>
+                    </div>
+                </div>
+
+                <div id="meetings-list" class="admin-grid">
+                    <!-- Meetings will be injected here -->
+                    <div class="text-center py-5 w-100" id="admin-loading">
+                        <div class="spinner"></div>
+                        <p>Fetching requests...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Configure Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

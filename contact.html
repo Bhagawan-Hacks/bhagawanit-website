@@ -43,9 +43,28 @@
             <div class="container two-column" style="align-items: flex-start;">
                 
                 <!-- Left: Contact Form -->
-                <div class="card glass-effect animate-on-scroll">
+                <div class="card glass-effect animate-on-scroll" id="booking-section">
                     <h2 class="mb-3">Book Your Consultation</h2>
-                    <form action="#" method="POST" class="contact-form" id="consultation-form">
+                    
+                    <!-- Loading State -->
+                    <div id="booking-loading" class="text-center py-4">
+                        <div class="spinner"></div>
+                        <p>Checking status...</p>
+                    </div>
+
+                    <!-- State 1: Guest (Not Logged In) -->
+                    <div id="booking-guest" style="display: none;" class="text-center py-4">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🔒</span>
+                        <h3>Sign In Required</h3>
+                        <p class="mb-3">To provide a professional experience and protect your data, please sign in to book a meeting.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <a href="login.html" class="btn btn-outline" style="border-color: var(--color-primary-red); color: var(--color-primary-red);">Log In</a>
+                            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                        </div>
+                    </div>
+
+                    <!-- State 2: Member (Logged In + No Booking) -->
+                    <form action="#" method="POST" class="contact-form" id="consultation-form" style="display: none;">
                         <div class="form-group">
                             <label for="fullName">Full Name *</label>
                             <input type="text" id="fullName" name="fullName" class="form-control" required placeholder="John Doe">
@@ -85,8 +104,31 @@
                             <label for="message">Project Details</label>
                             <textarea id="message" name="message" class="form-control" placeholder="Tell us a little about what you'd like to build..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Book Your Meeting</button>
+                        <button type="submit" id="submit-booking-btn" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Submit Request</button>
+                        <p id="booking-error" style="color: var(--color-primary-red); margin-top: 1rem; display: none; font-size: 0.9rem; text-align: center;"></p>
                     </form>
+
+                    <!-- State 3: Status View (Under Review / Approved) -->
+                    <div id="booking-status" style="display: none;" class="text-center py-4">
+                        <div class="status-icon-wrapper mb-3">
+                            <span id="status-icon" style="font-size: 4rem;">⏳</span>
+                        </div>
+                        <h3 id="status-title">Meeting Under Review</h3>
+                        <p id="status-desc" class="mb-3">Bhagawan is reviewing your request. You will receive an email shortly once approved.</p>
+                        
+                        <div class="card glass-effect status-detail-card mb-3" style="text-align: left; background: rgba(255,255,255,0.03);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600; font-size: 0.8rem; color: var(--text-muted-gray);">REFERENCE ID</span>
+                                <span id="ref-id" style="font-family: monospace; font-size: 0.8rem;">#BG-8291</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="font-weight: 600; font-size: 0.8rem; color: var(--text-muted-gray);">STATUS</span>
+                                <span id="status-badge" class="badge-pending">PENDING</span>
+                            </div>
+                        </div>
+
+                        <button id="cancel-booking-btn" class="btn btn-outline btn-pill" style="font-size: 0.8rem; border-width: 1px; opacity: 0.6;">Cancel Request</button>
+                    </div>
                 </div>
 
                 <!-- Right: Contact Info -->
@@ -99,11 +141,11 @@
                         <div style="padding: 2rem;">
                             <div class="mb-3">
                                 <h4 class="text-primary mb-1">Email</h4>
-                                <p style="color: var(--text-off-white); margin: 0;">info@bhagawanit.com.np</p>
+                                <p style="color: var(--text-off-white); margin: 0;">gautambhagawan55@gmail.com</p>
                             </div>
                             <div class="mb-3">
                                 <h4 class="text-primary mb-1">Phone</h4>
-                                <p style="color: var(--text-off-white); margin: 0;">+977-XXX-XXXXXXX</p>
+                                <p style="color: var(--text-off-white); margin: 0;">+977 9765655135</p>
                             </div>
                             <div class="mb-3">
                                 <h4 class="text-primary mb-1">Business Hours</h4>
@@ -214,8 +256,8 @@
                 <div class="footer-contact">
                     <h4 class="footer-heading">Contact Us</h4>
                     <ul>
-                        <li><p style="margin:0; color:var(--text-muted-gray);">Email: info@bhagawanit.com.np</p></li>
-                        <li><p style="margin:0; color:var(--text-muted-gray);">Phone: +977-XXX-XXXXXXX</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Email: gautambhagawan55@gmail.com</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Phone: +977 9765655135</p></li>
                         <li><p style="margin:0; color:var(--text-muted-gray);">Location: Kathmandu, Nepal</p></li>
                     </ul>
                 </div>
@@ -247,6 +289,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
     <script src="js/auth.js"></script>
 </body>
 </html>
