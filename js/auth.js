@@ -149,6 +149,83 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    // --- Password Recovery Logic ---
+    const forgotForm = document.getElementById('forgot-password-form');
+    if (forgotForm) {
+        forgotForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const btn = document.getElementById('reset-request-btn');
+            const errorDiv = document.getElementById('forgot-error');
+            const successDiv = document.getElementById('forgot-success');
+            
+            btn.disabled = true;
+            btn.innerText = 'Sending Link...';
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            try {
+                // In production, redirectTo should be your live Vercel URL
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: window.location.origin + '/reset-password.html',
+                });
+
+                if (error) throw error;
+
+                successDiv.innerText = 'Reset link sent! Please check your email inbox and click the link to continue.';
+                successDiv.style.display = 'block';
+                forgotForm.reset();
+            } catch (err) {
+                errorDiv.innerText = err.message || 'Failed to send reset link.';
+                errorDiv.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Send Reset Link';
+            }
+        });
+    }
+
+    const resetForm = document.getElementById('reset-password-form');
+    if (resetForm) {
+        resetForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const btn = document.getElementById('update-password-btn');
+            const errorDiv = document.getElementById('reset-error');
+            const successDiv = document.getElementById('reset-success');
+
+            if (newPassword !== confirmPassword) {
+                errorDiv.innerText = 'Passwords do not match.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = 'Updating Password...';
+            errorDiv.style.display = 'none';
+
+            try {
+                const { error } = await supabaseClient.auth.updateUser({
+                    password: newPassword
+                });
+
+                if (error) throw error;
+
+                successDiv.innerText = 'Password updated successfully! Redirecting you...';
+                successDiv.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } catch (err) {
+                errorDiv.innerText = err.message || 'Failed to update password.';
+                errorDiv.style.display = 'block';
+                btn.disabled = false;
+                btn.innerText = 'Update Password';
+            }
+        });
+    }
+
     // --- Logout Logic ---
     if (logoutBtn) {
         logoutBtn.addEventListener('click', async (e) => {
