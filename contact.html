@@ -74,35 +74,39 @@
                             <input type="email" id="email" name="email" class="form-control" required placeholder="john@company.com">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+977-XXXXXXXXX">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required placeholder="+977-XXXXXXXXX">
                         </div>
                         <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company" class="form-control" placeholder="Acme Corp">
+                            <label for="company">Company Name *</label>
+                            <input type="text" id="company" name="company" class="form-control" required placeholder="Acme Corp">
                         </div>
                         <div class="form-group">
-                            <label for="service">Service Interested In</label>
-                            <select id="service" name="service" class="form-control">
+                            <label for="service">Service Interested In *</label>
+                            <select id="service" name="service" class="form-control" required>
+                                <option value="" disabled selected>Select a Service</option>
                                 <option value="web">Website Development</option>
                                 <option value="app">Mobile App Development</option>
                                 <option value="uiux">UI/UX Design</option>
+                                <option value="graphic">Graphic Design</option>
                                 <option value="maintenance">Maintenance & Support</option>
                                 <option value="other">Other / Not Sure</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="budget">Project Budget (NPR)</label>
-                            <select id="budget" name="budget" class="form-control">
+                            <label for="budget">Project Budget (NPR) *</label>
+                            <select id="budget" name="budget" class="form-control" required>
+                                <option value="" disabled selected>Select Budget Range</option>
                                 <option value="under_1l">Under NPR 1L</option>
                                 <option value="1_to_5l">1L - 5L</option>
                                 <option value="5_to_10l">5L - 10L</option>
                                 <option value="over_10l">10L+</option>
                             </select>
+                            <p style="font-size: 0.75rem; color: var(--text-muted-gray); margin-top: 0.3rem;">💡 Note: Final pricing varies based on project scope and complexity.</p>
                         </div>
                         <div class="form-group">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" name="message" class="form-control" placeholder="Tell us a little about what you'd like to build..."></textarea>
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" class="form-control" required placeholder="Tell us a little about what you'd like to build..."></textarea>
                         </div>
                         <button type="submit" id="submit-booking-btn" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Submit Request</button>
                         <p id="booking-error" style="color: var(--color-primary-red); margin-top: 1rem; display: none; font-size: 0.9rem; text-align: center;"></p>

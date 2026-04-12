@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             'web': 'Website Development',
             'app': 'Mobile App Development',
             'uiux': 'UI/UX Design',
+            'graphic': 'Graphic Design',
             'maintenance': 'Maintenance & Support',
             'other': 'Other / Not Sure'
         };
