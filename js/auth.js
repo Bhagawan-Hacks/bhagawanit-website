@@ -1,4 +1,12 @@
 // IMPORTANT: Create `auth.js` to handle all Supabase authentication logic
+
+// --- Password Recovery Hash Intercept ---
+// If Supabase falls back to the Site URL (homepage), seamlessly redirect it correctly
+if (window.location.hash && window.location.hash.includes('type=recovery') && !window.location.pathname.includes('reset-password.html')) {
+    // Determine the base URL (relative works for SPAs or static sites)
+    window.location.replace('reset-password.html' + window.location.hash);
+}
+
 const isAuthPage = window.location.pathname.includes('login.html') || window.location.pathname.includes('signup.html');
 
 document.addEventListener('DOMContentLoaded', async () => {
