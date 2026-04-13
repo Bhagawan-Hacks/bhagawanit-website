@@ -68,11 +68,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             errorDiv.style.display = 'none';
 
             try {
+                // Intelligently fallback to production URL if opened via file:// to prevent Supabase default localhost:3000 errors
+                let redirectUrl = new URL('index.html', window.location.href).href;
+                if (window.location.protocol === 'file:') {
+                    redirectUrl = 'https://bhagawangautam.com.np/index.html';
+                }
+
                 // 1. Sign up user FIRST so they get authenticated
                 const { data: authData, error: authError } = await supabaseClient.auth.signUp({
                     email,
                     password,
                     options: {
+                        emailRedirectTo: redirectUrl,
                         data: {
                             full_name: fullName,
                             avatar_url: '' // Will update later if image provided
