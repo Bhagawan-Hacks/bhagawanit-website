@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // FAQ Knowledge Base
     const qaPairs = [
         {
+            keywords: ['hello', 'hi', 'hey', 'namaste', 'greetings'],
+            question: "Greetings",
+            answer: "Namaste! 🙏 I'm Bhagawan AI, your digital assistant. How can I help you with your IT needs today?"
+        },
+        {
             keywords: ['service', 'provide', 'what do you do', 'offer'],
             question: "What services does Bhagawan IT provide?",
             answer: "We offer comprehensive web development, mobile app development, custom software solutions, and IT consulting tailored for businesses in Nepal."
