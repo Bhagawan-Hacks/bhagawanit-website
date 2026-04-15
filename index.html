@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bhagawan IT is the Best IT Company in Nepal for secure, scalable software development. Leading Software Development Agency in Kathmandu for web and app solutions.">
+    <meta name="description" content="Bhagawan IT is the Best IT Company in Nepal based in Balaju, Kathmandu. Leading Software Development Agency for secure, scalable web and app solutions and the Best Web Developer in Nepal.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/favicon.png">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Bhagawan IT - Professional Web & App Development">
@@ -18,7 +20,7 @@
     <meta name="twitter:description" content="Secure, scalable website and app development for medium to large scale businesses in Nepal.">
     <meta name="twitter:image" content="https://bhagawangautam.com.np/images/logo.png">
 
-    <title>Bhagawan IT | Digital Products That Drive Growth</title>
+    <title>Best Web Developer in Nepal | Bhagawan IT - Digital Products</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,11 +28,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <meta name="google-site-verification" content="paQJJ5b73hxbJif6-4QkRSTFsyt_NJBGRa7p6EvRF7s" />
-    <link rel="canonical" href="https://bhagawangautam.com.np/index.html">
+    <link rel="canonical" href="https://bhagawangautam.com.np/">
     
     <!-- CSS -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
 
     <!-- Schema.org / Structured Data -->
     <script type="application/ld+json">
@@ -45,14 +48,16 @@
         "telephone": "+977 9765655135",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Kathmandu",
+          "streetAddress": "Balaju",
           "addressLocality": "Kathmandu",
+          "addressRegion": "Bagmati",
+          "postalCode": "44600",
           "addressCountry": "NP"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 27.7172,
-          "longitude": 85.3240
+          "latitude": 27.7345,
+          "longitude": 85.3056
         },
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
@@ -68,9 +73,23 @@
         },
         "sameAs": [
           "https://www.facebook.com/BhagawanIT",
-          "https://www.linkedin.com/company/bhagawan-it"
+          "https://www.linkedin.com/company/bhagawan-it",
+          "https://twitter.com/BhagawanIT"
         ],
         "priceRange": "Rs. 7,499 - Rs. 30,000+"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Bhagawan IT",
+        "url": "https://bhagawangautam.com.np/",
+        "logo": "https://bhagawangautam.com.np/images/logo.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Bhagawan Gautam"
+        },
+        "foundingDate": "2025",
+        "description": "The best web development company in Nepal specializing in secure and scalable digital solutions."
       },
       {
         "@context": "https://schema.org",
@@ -79,7 +98,7 @@
         "url": "https://bhagawangautam.com.np/",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://bhagawangautam.com.np/services.html?q={search_term_string}",
+          "target": "https://bhagawangautam.com.np/services?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       }
@@ -323,7 +342,7 @@
                     <ul>
                         <li><p style="margin:0; color:var(--text-muted-gray);">Email: gautambhagawan55@gmail.com</p></li>
                         <li><p style="margin:0; color:var(--text-muted-gray);">Phone: +977 9765655135</p></li>
-                        <li><p style="margin:0; color:var(--text-muted-gray);">Location: Kathmandu, Nepal</p></li>
+                        <li><p style="margin:0; color:var(--text-muted-gray);">Location: Balaju, Kathmandu, Nepal</p></li>
                     </ul>
                 </div>
             </div>
@@ -345,5 +364,6 @@
     <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
 </html>

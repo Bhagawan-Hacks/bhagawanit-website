@@ -1,0 +1,296 @@
+/* --- Bhagawan AI Chat Bot Styles --- */
+
+:root {
+    --chat-bg: rgba(17, 24, 39, 0.95);
+    --chat-glass: rgba(255, 255, 255, 0.05);
+    --chat-accent: #E63946;
+    --chat-blue: #1D3557;
+    --chat-text: #F1FAEE;
+    --chat-muted: #94A3B8;
+    --chat-radius: 16px;
+    --chat-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Floating Bubble */
+.chatbot-bubble {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--chat-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+}
+
+.chatbot-bubble:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.chatbot-bubble svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+/* Chat Window */
+.chatbot-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    height: 550px;
+    background: var(--chat-bg);
+    border-radius: var(--chat-radius);
+    box-shadow: var(--chat-shadow);
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.chatbot-window.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Header */
+.chatbot-header {
+    background: linear-gradient(135deg, var(--chat-accent), var(--chat-blue));
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chatbot-avatar {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--chat-accent);
+}
+
+.chatbot-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.chatbot-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.chatbot-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.chatbot-close:hover {
+    opacity: 1;
+}
+
+/* Messages Area */
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--chat-glass) transparent;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+    background: var(--chat-glass);
+    border-radius: 10px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    animation: messageIn 0.3s ease-out;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: var(--chat-glass);
+    color: var(--chat-text);
+    border-bottom-left-radius: 2px;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: var(--chat-accent);
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+/* Quick Replies */
+.chatbot-quick-replies {
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quick-reply-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--chat-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quick-reply-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: var(--chat-accent);
+}
+
+/* Input Area */
+.chatbot-input-area {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.chatbot-input:focus {
+    border-color: var(--chat-accent);
+}
+
+.chatbot-send {
+    background: var(--chat-accent);
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.chatbot-send:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-send svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+}
+
+/* Typing Indicator */
+.typing {
+    display: flex;
+    gap: 4px;
+    padding: 10px;
+}
+
+.typing span {
+    width: 6px;
+    height: 6px;
+    background: var(--chat-muted);
+    border-radius: 50%;
+    animation: typing 1s infinite alternate;
+}
+
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    from { opacity: 0.3; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(-4px); }
+}
+
+@keyframes messageIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Booking Link Style */
+.booking-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #4ade80;
+    color: #064e3b;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.booking-link:hover {
+    background: #22c55e;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .chatbot-window {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    
+    .chatbot-bubble {
+        bottom: 20px;
+        right: 20px;
+    }
+}
