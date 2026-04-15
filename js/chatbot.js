@@ -9,44 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
             answer: "Namaste! 🙏 I'm Bhagawan AI, your digital assistant. How can I help you with your IT needs today?"
         },
         {
-            keywords: ['service', 'provide', 'what do you do', 'offer'],
+            keywords: ['service', 'provide', 'what do you do', 'offer', 'web', 'app', 'development', 'software', 'our services'],
             question: "What services does Bhagawan IT provide?",
             answer: "We offer comprehensive web development, mobile app development, custom software solutions, and IT consulting tailored for businesses in Nepal."
         },
         {
-            keywords: ['best', 'why choose', 'top', 'quality'],
+            keywords: ['best', 'why choose', 'top', 'quality', 'nepal', 'kathmandu'],
             question: "Why is Bhagawan IT the best?",
             answer: "We combine high-end design, bank-grade security, and unbeatable local pricing. Our team uses global standards to deliver unmatched value to clients in Kathmandu and beyond."
         },
         {
-            keywords: ['time', 'how long', 'duration', 'days', 'weeks'],
+            keywords: ['time', 'how long', 'duration', 'days', 'weeks', 'months', 'timeline'],
             question: "How long does it take to build a website?",
             answer: "A standard website usually takes 7-14 days. Complex custom systems or mobile apps may take 4-8 weeks or more depending on project scope."
         },
         {
-            keywords: ['support', 'after', 'maintenance', 'help'],
+            keywords: ['support', 'after', 'maintenance', 'help', 'fix', 'update'],
             question: "Do you provide support after launch?",
             answer: "Absolutely! We offer 24/7 dedicated support and various tiered maintenance plans to ensure your systems are always updated and secure."
         },
         {
-            keywords: ['price', 'cost', 'fee', 'charge', 'expensive'],
+            keywords: ['price', 'cost', 'fee', 'charge', 'expensive', 'pricing', 'standard', 'setup', 'npr', 'rs'],
             question: "What is your pricing model?",
             answer: "We believe in transparent, local pricing. We offer fixed-price contracts for defined projects and time-and-materials retainers for agile projects. Our setup starts as low as Rs. 7,499."
         },
         {
-            keywords: ['security', 'safe', 'secure', 'protect', 'data'],
+            keywords: ['security', 'safe', 'secure', 'protect', 'data', 'encryption', 'hacking', 'safe'],
             question: "How do you ensure security?",
             answer: "Security is built-in from day one. We adhere to OWASP standards, use high-grade encryption, and conduct penetration testing to ensure your data is bank-grade secure."
         },
         {
-            keywords: ['system', 'existing', 'integrate', 'legacy'],
+            keywords: ['system', 'existing', 'integrate', 'legacy', 'api', 'database'],
             question: "Can you work with our existing systems?",
             answer: "Yes, we have extensive experience building custom APIs and integrations to connect new platforms with your existing CRM, ERP, or databases."
         },
         {
-            keywords: ['book', 'meeting', 'consultation', 'talk', 'contact', 'appointment'],
+            keywords: ['book', 'meeting', 'consultation', 'talk', 'contact', 'appointment', 'schedule'],
             question: "How do I book a meeting?",
-            answer: "I'd the happy to help! You can book a free consultation directly through our booking form. <br><a href='contact.html#booking-section' class='booking-link'>Book a Meeting Now 🗓️</a>"
+            answer: "I'd be happy to help! You can book a free consultation directly through our booking form. <br><a href='contact.html#booking-section' class='booking-link'>Book a Meeting Now 🗓️</a>"
         }
     ];
 
