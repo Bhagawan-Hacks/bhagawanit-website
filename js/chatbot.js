@@ -178,12 +178,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return botConfig.fallbackMsg;
     }
+    
+    // Listen for global queries
+    document.addEventListener('bhagawanAiQuery', (e) => {
+        handleUserMessage(e.detail);
+    });
 
-    // Global trigger for chat (for buttons on the page)
-    window.openBhagawanAI = (query = '') => {
-        bubble.click();
-        if (query) {
-            handleUserMessage(query);
-        }
-    };
 });
+
+/**
+ * Global trigger for chatbot (accessible from anywhere)
+ */
+window.openBhagawanAI = (query = '') => {
+    const bubble = document.getElementById('chatBubble');
+    const window = document.getElementById('chatWindow');
+    const input = document.getElementById('chatInput');
+    
+    if (bubble && window) {
+        // Trigger the click logic
+        window.classList.add('active');
+        bubble.style.display = 'none';
+        
+        if (input) {
+            input.focus();
+            if (query) {
+                // If there's a query, we need to pass it to the chat bot logic
+                // We'll dispatch a custom event that the chatbot script listens for
+                const event = new CustomEvent('bhagawanAiQuery', { detail: query });
+                document.dispatchEvent(event);
+            }
+        }
+    } else {
+        console.error('Bhagawan AI: Chat elements not found.');
+    }
+};
