@@ -1,3 +1,12 @@
+/**
+ * Global Theme Initialization
+ * Prevents "flash of theme" and handles persistence across all pages.
+ */
+(function initTheme() {
+    const savedTheme = localStorage.getItem('bhagawan_it_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Mobile Menu Toggle ---

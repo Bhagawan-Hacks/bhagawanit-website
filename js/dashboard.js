@@ -66,6 +66,91 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // --- Settings & Theme Logic ---
+    const settingsModal = document.getElementById('settingsModal');
+    const editProfileBtn = document.getElementById('edit-profile-btn');
+    const closeSettings = document.getElementById('closeSettings');
+    const themeBtns = document.querySelectorAll('.theme-btn');
+    const saveProfileBtn = document.getElementById('saveProfileBtn');
+    const settingFullName = document.getElementById('setting-full-name');
+    const logoutBtnSettings = document.getElementById('logout-btn-settings');
+
+    // Open Modal
+    editProfileBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        settingsModal.classList.add('active');
+        // Pre-fill name
+        settingFullName.value = userName.innerText !== 'Bhagawan IT Client' ? userName.innerText : '';
+        // Set active theme button
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        updateThemeButtons(currentTheme);
+    });
+
+    // Close Modal
+    const fnCloseModal = () => settingsModal.classList.remove('active');
+    closeSettings?.addEventListener('click', fnCloseModal);
+    settingsModal?.addEventListener('click', (e) => {
+        if (e.target === settingsModal) fnCloseModal();
+    });
+
+    // Theme Switching
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const theme = btn.getAttribute('data-theme-set');
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('bhagawan_it_theme', theme);
+            updateThemeButtons(theme);
+        });
+    });
+
+    function updateThemeButtons(currentTheme) {
+        themeBtns.forEach(btn => {
+            if (btn.getAttribute('data-theme-set') === currentTheme) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    // Save Profile Changes
+    saveProfileBtn?.addEventListener('click', async () => {
+        const newName = settingFullName.value.trim();
+        if (!newName) return alert('Please enter a valid name.');
+
+        saveProfileBtn.disabled = true;
+        saveProfileBtn.innerText = 'Saving...';
+
+        try {
+            const { error } = await supabaseClient
+                .from('profiles')
+                .upsert({ 
+                    id: user.id, 
+                    full_name: newName
+                });
+
+            if (error) throw error;
+
+            userName.innerText = newName;
+            alert('Profile updated successfully! ✨');
+            fnCloseModal();
+        } catch (err) {
+            console.error('Update failed:', err);
+            alert('Error updating profile: ' + err.message);
+        } finally {
+            saveProfileBtn.disabled = false;
+            saveProfileBtn.innerText = 'Save Profile Changes';
+        }
+    });
+
+    // Logout via Settings
+    logoutBtnSettings?.addEventListener('click', async () => {
+        if (confirm('Are you sure you want to log out?')) {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'login';
+        }
+    });
+
     function renderMeetings(meetings) {
         if (!meetings || meetings.length === 0) {
             meetingsList.innerHTML = `
