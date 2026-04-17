@@ -2,7 +2,7 @@
   "name": "Bhagawan IT | Best Web Developer in Nepal",
   "short_name": "Bhagawan IT",
   "description": "Nepal's premier software development agency, delivering high-end digital products at sensible prices.",
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#3b82f6",
@@ -10,12 +10,20 @@
     {
       "src": "images/favicon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "images/logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
